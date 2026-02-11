@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Balancer - UML Diagram</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="home-button">Home</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Project 3 - Load Balancer</h1>
+            <h2>Flow Diagram</h2>
+        </header>
+
+        <main>
+            <div class="diagram-container">
+                <img src="flow-diagram.png" alt="Flow Diagram">
+            </div>
+
+            <div class="description">
+                <h3>Overview</h3>
+                <p>
+                
+                    The flow diagram shows the main loop of the load balancer. The process begins with obtaining the user input for the number of servers and how long the balancer will be running. Then during each iteration (clock cycle but will likely be a loop) the IP address will be checked to see whether it is able to enter the queue or not and then the scaling conditions get checked to see what needs to be done. The loop will only end once the time limit mathecs the user specified input, and then from there logs will be made and the program will clean up and end.
+                </p>
+            </div>
+        </main>
+
+        <footer>
+            <p>CSCE 412 - Cloud Computing | Aditya Nambi</p>
+        </footer>
+    </div>
+</body>
+</html>
