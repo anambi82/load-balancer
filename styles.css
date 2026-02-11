@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+.logo {
+    width: 150px;
+    height: auto;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f5f5;
