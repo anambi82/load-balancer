@@ -14,7 +14,7 @@ long IpRange::ipToNum(const std::string& ip) const {
 
     while (std::getline(iss, token, '.')){
         part = std::stoi(token);
-        res = res * 1000 + part;
+        res = res * 256 + part;
     }
 
     return res;

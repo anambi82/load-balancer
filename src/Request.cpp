@@ -4,7 +4,7 @@
 #include <sstream>
 #include <random>
 
-Request::Request() : ipIn("000.000.000"), ipOut("000.000.000"), processTime(0), jobType('P') {
+Request::Request() : ipIn("000.000.000.000"), ipOut("000.000.000.000"), processTime(0), jobType('P') {
 }
 
 Request::Request(std::string ipIn, std::string ipOut, int processTime, char jobType)
@@ -27,15 +27,17 @@ char Request::getJobType() const {
     return jobType;
 }
 
+//update to match IPv4 format
 std::string Request::generateRandomIp() {
     static std::random_device rd;
     static std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, 255);
 
     std::ostringstream oss;
-    oss << std::setw(3) << std::setfill('0') << dis(gen) << "."
-        << std::setw(3) << std::setfill('0') << dis(gen) << "."
-        << std::setw(3) << std::setfill('0') << dis(gen);
+    oss << dis(gen) << "."
+        << dis(gen) << "."
+        << dis(gen) << "."
+        << dis(gen);
 
     return oss.str();
 }

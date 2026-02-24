@@ -14,5 +14,5 @@ newRequestProb=0.1
 
 # Blocked IP ranges
 # Format: startIP-endIP,startIP-endIP
-# IPs use format: xxx.xxx.xxx
-blockedIpRanges=010.000.000-010.000.255,192.168.000-192.168.100
+# IPs use format: xxx.xxx.xxx.xxx
+blockedIpRanges=0.0.0.0-10.0.0.255,192.168.1.0-192.168.1.50
