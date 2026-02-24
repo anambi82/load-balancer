@@ -16,43 +16,43 @@
 
 
 class LogFile {
-private:
-    std::string filename;
-    std::ofstream outFile;
+    private:
+        std::string filename;
+        std::ofstream outFile;
 
-    int serversCreated;
-    int serversDeleted;
-    int requestsProcessed;
-    int requestsBlocked;
-    bool consoleOutput;
+        int serversCreated;
+        int serversDeleted;
+        int requestsProcessed;
+        int requestsBlocked;
+        bool consoleOutput;
 
-public:
-    LogFile(const std::string& filename, bool enableConsole = true);
-   
-    ~LogFile();
-
-    void setConsoleOutput(bool enable);
-   
-    void logEvent(int cycle, const std::string& message);
-
-    void logServerAdded(int cycle, int serverId);
-   
-    void logServerRemoved(int cycle, int serverId);
-
-    void logRequestProcessed(int cycle, const std::string& ipIn, const std::string& ipOut);
-
-    void logRequestBlocked(int cycle, const std::string& ip);
+    public:
+        LogFile(const std::string& filename, bool enableConsole = true);
     
-    void logStatus(int cycle, int queueSize, int serverCount);
+        ~LogFile();
 
-    void writeSummary(int totalTime, int finalServerCount, int finalQueueSize);
-   
-    void close();
+        void setConsoleOutput(bool enable);
+    
+        void logEvent(int cycle, const std::string& message);
 
-    int getServersCreated() const;
-    int getServersDeleted() const;
-    int getRequestsProcessed() const;
-    int getRequestsBlocked() const;
-};
+        void logServerAdded(int cycle, int serverId);
+    
+        void logServerRemoved(int cycle, int serverId);
+
+        void logRequestProcessed(int cycle, const std::string& ipIn, const std::string& ipOut);
+
+        void logRequestBlocked(int cycle, const std::string& ip);
+        
+        void logStatus(int cycle, int queueSize, int serverCount);
+
+        void writeSummary(int totalTime, int finalServerCount, int finalQueueSize);
+    
+        void close();
+
+        int getServersCreated() const;
+        int getServersDeleted() const;
+        int getRequestsProcessed() const;
+        int getRequestsBlocked() const;
+    };
 
 #endif

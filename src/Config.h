@@ -34,6 +34,9 @@ class Config{
         double getNewRequestProb() const;
         const std::vector<IpRange>& getBlockedIpRanges() const;
 
+        void setInitServers(int count);
+        void setTotalRunTime(int time);
+
         void printConfig() const;
 };
 

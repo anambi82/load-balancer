@@ -124,6 +124,14 @@ const std::vector<IpRange>& Config::getBlockedIpRanges() const {
     return blockedIpRanges;
 }
 
+void Config::setInitServers(int count) {
+    initServers = count;
+}
+
+void Config::setTotalRunTime(int time) {
+    totalRunTime = time;
+}
+
 void Config::printConfig() const {
     std::cout << "===== Current Configuration =====" << std::endl;
     std::cout << "initServers:                     " << initServers << std::endl;

@@ -33,6 +33,7 @@ bool WebServer::advanceClockCycle(){
     timeRemaining--;
 
     if (timeRemaining <= 0) {
+        busy = false;
         return true; // request completed
     }
 

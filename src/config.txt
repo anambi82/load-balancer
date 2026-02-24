@@ -1,0 +1,18 @@
+initServers=20
+
+totalRunTime=10000
+
+minQueuePerServer=50
+maxQueuePerServer=80
+
+scaleCooldownTime=20
+
+minProcessTime=20
+maxProcessTime=100
+
+newRequestProb=0.1
+
+# Blocked IP ranges
+# Format: startIP-endIP,startIP-endIP
+# IPs use format: xxx.xxx.xxx
+blockedIpRanges=010.000.000-010.000.255,192.168.000-192.168.100
