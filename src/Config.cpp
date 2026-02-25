@@ -18,9 +18,9 @@ void Config::setDefault() {
     minQueuePerServer = 50;
     maxQueuePerServer = 80;
     scaleCooldownTime = 100;
-    minProcessTime = 10;
-    maxProcessTime = 500;
-    newRequestProb = 0.3;
+    minProcessTime = 5;
+    maxProcessTime = 20;
+    newRequestProb = 0.25;
     blockedIpRanges.clear();
 }
 
