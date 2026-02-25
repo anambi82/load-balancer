@@ -7,6 +7,55 @@
  * simulation, writing all events to log.txt.
  */
 
+/**
+ * @mainpage Load Balancer  Project
+ * 
+ * @section intro_sec Introduction
+ * 
+ * This project simulates a load balancer that manages web server allocation 
+ * and request processing. The system dynamically scales servers up and down 
+ * based on queue size to efficiently handle incoming requests.
+
+ * 
+ * @section classes_sec Main Classes
+ * 
+ * | Class | Description |
+ * |-------|-------------|
+ * | LoadBalancer | Main orchestrator that manages servers and queue |
+ * | WebServer | Processes one request at a time |
+ * | Request | Data structure for web requests (IP in, IP out, time, type) |
+ * | RequestQueue | FIFO queue for pending requests |
+ * | Config | Loads and stores configuration settings |
+ * | LogFile | Handles logging and summary generation |
+ * | IpRange | Defines blocked IP address ranges |
+ * 
+ * @section workflow_sec How It Works
+ * 
+ * 1. Load configuration from config.txt
+ * 2. Get user input for server count and run time
+ * 3. Initialize servers and generate initial request queue
+ * 4. Run simulation loop:
+ *    - Maybe add new random request
+ *    - Process servers (decrement time remaining)
+ *    - Distribute queued requests to idle servers
+ *    - Check scaling conditions (add/remove servers)
+ * 5. Write summary to log file
+ * 
+ * 
+ * @section usage_sec Usage
+ * 
+ * @code{.sh}
+ * make
+ * ./loadbalancer
+ * @endcode
+ * 
+ * @section author_sec Author
+ * 
+ * Aditya Nambi
+ * 
+ * CSCE 412 - Cloud Computing
+ */
+
 #include "LoadBalancer.h"
 #include "Config.h"
 #include "LogFile.h"

@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Load Balancer Documentation", "index.html", [
+    [ "Load Balancer Project", "index.html", "index" ],
     [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

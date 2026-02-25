@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['webserver_0',['WebServer',['../class_web_server.html',1,'WebServer'],['../class_web_server.html#a5044757cd8574d3f62a7eec5d51fb00f',1,'WebServer::WebServer()']]],
-  ['webserver_2ecpp_1',['WebServer.cpp',['../_web_server_8cpp.html',1,'']]],
-  ['webserver_2eh_2',['WebServer.h',['../_web_server_8h.html',1,'']]],
-  ['white_3',['WHITE',['../group___terminal_colors.html#ga87b537f5fa5c109d3c05c13d6b18f382',1,'LogFile.h']]],
-  ['writesummary_4',['writeSummary',['../class_log_file.html#a1231535bcc61b0404e04176bb90c2f90',1,'LogFile']]]
+  ['terminal_20color_20codes_0',['ANSI Terminal Color Codes',['../group___terminal_colors.html',1,'']]],
+  ['timeremaining_1',['timeRemaining',['../class_web_server.html#a908c1614efb60d8ea72e4b137894becb',1,'WebServer']]],
+  ['totalruntime_2',['totalRunTime',['../class_config.html#a6b7f09718b774f99c73452e8866052ae',1,'Config']]]
 ];

@@ -106,14 +106,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a440a7de2dcbb9facb68e56dc47cb9dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Closes the log file if still open. <br /></td></tr>
 <tr class="memitem:a07cf7f62c053b217f467a9add5848530" id="r_a07cf7f62c053b217f467a9add5848530"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a07cf7f62c053b217f467a9add5848530">setConsoleOutput</a> (bool enable)</td></tr>
 <tr class="memdesc:a07cf7f62c053b217f467a9add5848530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables mirroring log entries to the console.  <br /></td></tr>
+<tr class="memitem:aab70d3bc081c8f9ace2ff96e2c5431b0" id="r_aab70d3bc081c8f9ace2ff96e2c5431b0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aab70d3bc081c8f9ace2ff96e2c5431b0">logHeader</a> (int initServers, int runTime, int minProcessTime, int maxProcessTime, int startingQueueSize, const std::string &amp;ipRangeStart, const std::string &amp;ipRangeEnd)</td></tr>
+<tr class="memdesc:aab70d3bc081c8f9ace2ff96e2c5431b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the simulation starting configuration header to the log file and console.  <br /></td></tr>
 <tr class="memitem:a4f2b8740f37b6d392f9960d91efb91ee" id="r_a4f2b8740f37b6d392f9960d91efb91ee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4f2b8740f37b6d392f9960d91efb91ee">logEvent</a> (int cycle, const std::string &amp;message)</td></tr>
 <tr class="memdesc:a4f2b8740f37b6d392f9960d91efb91ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic simulation event message.  <br /></td></tr>
 <tr class="memitem:a2c5df6d17c68664c46fea9aa3a5c6fbc" id="r_a2c5df6d17c68664c46fea9aa3a5c6fbc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2c5df6d17c68664c46fea9aa3a5c6fbc">logServerAdded</a> (int cycle, int serverId)</td></tr>
 <tr class="memdesc:a2c5df6d17c68664c46fea9aa3a5c6fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the creation of a new web server.  <br /></td></tr>
 <tr class="memitem:ada0db3b99edabe80e0d782c633c599b8" id="r_ada0db3b99edabe80e0d782c633c599b8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ada0db3b99edabe80e0d782c633c599b8">logServerRemoved</a> (int cycle, int serverId)</td></tr>
 <tr class="memdesc:ada0db3b99edabe80e0d782c633c599b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the removal of an existing web server.  <br /></td></tr>
-<tr class="memitem:aacaf536c37464e2dd8f7abca3b0df3ae" id="r_aacaf536c37464e2dd8f7abca3b0df3ae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aacaf536c37464e2dd8f7abca3b0df3ae">logRequestProcessed</a> (int cycle, const std::string &amp;ipIn, const std::string &amp;ipOut)</td></tr>
-<tr class="memdesc:aacaf536c37464e2dd8f7abca3b0df3ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the successful completion of a request.  <br /></td></tr>
+<tr class="memitem:a899a49108651fc80054f166d27f6901e" id="r_a899a49108651fc80054f166d27f6901e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a899a49108651fc80054f166d27f6901e">logRequestStarted</a> (int cycle, int serverId, const std::string &amp;ipIn, const std::string &amp;ipOut, int processTime)</td></tr>
+<tr class="memdesc:a899a49108651fc80054f166d27f6901e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the start of request processing by a server.  <br /></td></tr>
+<tr class="memitem:a20d456c96c4270a52eec8928b7c150d9" id="r_a20d456c96c4270a52eec8928b7c150d9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a20d456c96c4270a52eec8928b7c150d9">logRequestProcessed</a> (int cycle, int serverId, const std::string &amp;ipIn, const std::string &amp;ipOut, int processTime)</td></tr>
+<tr class="memdesc:a20d456c96c4270a52eec8928b7c150d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the successful completion of a request.  <br /></td></tr>
 <tr class="memitem:acb3501c500b7b52e1c76c86646728fcd" id="r_acb3501c500b7b52e1c76c86646728fcd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acb3501c500b7b52e1c76c86646728fcd">logRequestBlocked</a> (int cycle, const std::string &amp;ip)</td></tr>
 <tr class="memdesc:acb3501c500b7b52e1c76c86646728fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a request that was rejected due to a blocked IP range.  <br /></td></tr>
 <tr class="memitem:a829d6cec97ceae6b744b68e8eebd1586" id="r_a829d6cec97ceae6b744b68e8eebd1586"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a829d6cec97ceae6b744b68e8eebd1586">logStatus</a> (int cycle, int queueSize, int serverCount)</td></tr>
@@ -225,6 +229,66 @@ bool&#160;</td><td class="memItemRight"><b>consoleOutput</b></td></tr>
 
 </div>
 </div>
+<a id="aab70d3bc081c8f9ace2ff96e2c5431b0" name="aab70d3bc081c8f9ace2ff96e2c5431b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab70d3bc081c8f9ace2ff96e2c5431b0">&#9670;&#160;</a></span>logHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogFile::logHeader </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>initServers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>runTime</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minProcessTime</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>maxProcessTime</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>startingQueueSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipRangeStart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipRangeEnd</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the simulation starting configuration header to the log file and console. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initServers</td><td>Number of servers created at startup. </td></tr>
+    <tr><td class="paramname">runTime</td><td>Total simulation run time in clock cycles. </td></tr>
+    <tr><td class="paramname">minProcessTime</td><td>Minimum request processing time in clock cycles. </td></tr>
+    <tr><td class="paramname">maxProcessTime</td><td>Maximum request processing time in clock cycles. </td></tr>
+    <tr><td class="paramname">startingQueueSize</td><td>Number of requests pre-loaded into the queue at init. </td></tr>
+    <tr><td class="paramname">ipRangeStart</td><td>Lower bound of the blocked IP range (or "N/A" if none configured). </td></tr>
+    <tr><td class="paramname">ipRangeEnd</td><td>Upper bound of the blocked IP range (or "N/A" if none configured). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="acb3501c500b7b52e1c76c86646728fcd" name="acb3501c500b7b52e1c76c86646728fcd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb3501c500b7b52e1c76c86646728fcd">&#9670;&#160;</a></span>logRequestBlocked()</h2>
 
@@ -255,8 +319,8 @@ bool&#160;</td><td class="memItemRight"><b>consoleOutput</b></td></tr>
 
 </div>
 </div>
-<a id="aacaf536c37464e2dd8f7abca3b0df3ae" name="aacaf536c37464e2dd8f7abca3b0df3ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacaf536c37464e2dd8f7abca3b0df3ae">&#9670;&#160;</a></span>logRequestProcessed()</h2>
+<a id="a20d456c96c4270a52eec8928b7c150d9" name="a20d456c96c4270a52eec8928b7c150d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20d456c96c4270a52eec8928b7c150d9">&#9670;&#160;</a></span>logRequestProcessed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,12 +333,22 @@ bool&#160;</td><td class="memItemRight"><b>consoleOutput</b></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>serverId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipIn</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipOut</em></span>&#160;)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipOut</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>processTime</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -283,8 +357,58 @@ bool&#160;</td><td class="memItemRight"><b>consoleOutput</b></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cycle</td><td>Current clock cycle number. </td></tr>
+    <tr><td class="paramname">serverId</td><td>Unique ID of the server that finished the request. </td></tr>
     <tr><td class="paramname">ipIn</td><td>Source IP address of the completed request. </td></tr>
     <tr><td class="paramname">ipOut</td><td>Destination IP address of the completed request. </td></tr>
+    <tr><td class="paramname">processTime</td><td>Number of clock cycles the request took to process. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a899a49108651fc80054f166d27f6901e" name="a899a49108651fc80054f166d27f6901e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a899a49108651fc80054f166d27f6901e">&#9670;&#160;</a></span>logRequestStarted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogFile::logRequestStarted </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>cycle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>serverId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipIn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ipOut</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>processTime</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Logs the start of request processing by a server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cycle</td><td>Current clock cycle number. </td></tr>
+    <tr><td class="paramname">serverId</td><td>Unique ID of the server that accepted the request. </td></tr>
+    <tr><td class="paramname">ipIn</td><td>Source IP address of the request. </td></tr>
+    <tr><td class="paramname">ipOut</td><td>Destination IP address of the request. </td></tr>
+    <tr><td class="paramname">processTime</td><td>Number of clock cycles required to process the request. </td></tr>
   </table>
   </dd>
 </dl>

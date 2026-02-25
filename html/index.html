@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Load Balancer Documentation: Main Page</title>
+<title>Load Balancer Documentation: Load Balancer Project</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,10 +87,57 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Load Balancer Documentation Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Load Balancer Project </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="intro_sec"></a>
+Introduction</h1>
+<p>This project simulates a load balancer that manages web server allocation and request processing. The system dynamically scales servers up and down based on queue size to efficiently handle incoming requests.</p>
+<h1 class="doxsection"><a class="anchor" id="classes_sec"></a>
+Main Classes</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Class  </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="class_load_balancer.html" title="Orchestrates the simulation of a dynamically scaling server pool.">LoadBalancer</a>  </td><td class="markdownTableBodyNone">Main orchestrator that manages servers and queue  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="class_web_server.html" title="Models a single server that processes one Request at a time.">WebServer</a>  </td><td class="markdownTableBodyNone">Processes one request at a time  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="class_request.html" title="Represents a single network request routed through the load balancer.">Request</a>  </td><td class="markdownTableBodyNone">Data structure for web requests (IP in, IP out, time, type)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="class_request_queue.html" title="A FIFO queue that buffers incoming Request objects awaiting server assignment.">RequestQueue</a>  </td><td class="markdownTableBodyNone">FIFO queue for pending requests  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="class_config.html" title="Holds all configuration parameters for the load balancer simulation.">Config</a>  </td><td class="markdownTableBodyNone">Loads and stores configuration settings  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="class_log_file.html" title="Writes simulation events to a log file and optionally to the console.">LogFile</a>  </td><td class="markdownTableBodyNone">Handles logging and summary generation  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="class_ip_range.html" title="Represents an inclusive range of IPv4 addresses used for IP blocking.">IpRange</a>  </td><td class="markdownTableBodyNone">Defines blocked IP address ranges  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="workflow_sec"></a>
+How It Works</h1>
+<ol type="1">
+<li>Load configuration from config.txt</li>
+<li>Get user input for server count and run time</li>
+<li>Initialize servers and generate initial request queue</li>
+<li>Run simulation loop:<ul>
+<li>Maybe add new random request</li>
+<li>Process servers (decrement time remaining)</li>
+<li>Distribute queued requests to idle servers</li>
+<li>Check scaling conditions (add/remove servers)</li>
+</ul>
+</li>
+<li>Write summary to log file</li>
+</ol>
+<h1 class="doxsection"><a class="anchor" id="usage_sec"></a>
+Usage</h1>
+<div class="fragment"><div class="line">make</div>
+<div class="line">./loadbalancer</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="author_sec"></a>
+Author</h1>
+<p>Aditya Nambi</p>
+<p>CSCE 412 - Cloud Computing </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->
