@@ -1,3 +1,8 @@
+/**
+ * @file IpRange.cpp
+ * @brief Implementation of the IpRange class.
+ */
+
 #include "IpRange.h"
 #include <sstream>
 
@@ -8,7 +13,7 @@ IpRange::IpRange(const std::string& startIp, const std::string& endIp)
 long IpRange::ipToNum(const std::string& ip) const {
     long res = 0;
     int part = 0;
-    
+
     std::istringstream iss(ip);
     std::string token;
 

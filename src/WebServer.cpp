@@ -1,3 +1,8 @@
+/**
+ * @file WebServer.cpp
+ * @brief Implementation of the WebServer class.
+ */
+
 #include "WebServer.h"
 
 WebServer::WebServer(int id) : serverId(id), busy(false), timeRemaining(0) {

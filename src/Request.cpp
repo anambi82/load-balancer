@@ -1,3 +1,8 @@
+/**
+ * @file Request.cpp
+ * @brief Implementation of the Request class.
+ */
+
 #include "Request.h"
 #include <cstdlib>
 #include <iomanip>
@@ -27,7 +32,6 @@ char Request::getJobType() const {
     return jobType;
 }
 
-//update to match IPv4 format
 std::string Request::generateRandomIp() {
     static std::random_device rd;
     static std::mt19937 gen(rd());

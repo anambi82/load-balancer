@@ -1,3 +1,8 @@
+/**
+ * @file Config.cpp
+ * @brief Implementation of the Config class.
+ */
+
 #include "Config.h"
 #include <fstream>
 #include <sstream>

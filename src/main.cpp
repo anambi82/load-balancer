@@ -1,3 +1,12 @@
+/**
+ * @file main.cpp
+ * @brief Entry point for the load balancer simulation.
+ *
+ * Loads configuration from config.txt, prompts the user for the initial
+ * server count and run duration, then initializes and runs the LoadBalancer
+ * simulation, writing all events to log.txt.
+ */
+
 #include "LoadBalancer.h"
 #include "Config.h"
 #include "LogFile.h"
@@ -6,6 +15,13 @@
 
 using namespace std;
 
+/**
+ * @brief Prompts the user for an integer within a valid range, retrying on bad input.
+ * @param prompt Text displayed to the user before reading input.
+ * @param minVal Minimum accepted value (inclusive).
+ * @param maxVal Maximum accepted value (inclusive).
+ * @return A valid integer entered by the user within [minVal, maxVal].
+ */
 int getValidInt(const string& prompt, int minVal, int maxVal) {
     int value;
     while (true) {
@@ -24,6 +40,15 @@ int getValidInt(const string& prompt, int minVal, int maxVal) {
     }
 }
 
+/**
+ * @brief Application entry point.
+ *
+ * Loads simulation settings from config.txt (falls back to defaults on failure),
+ * accepts user overrides for server count and run time, then runs the full
+ * LoadBalancer simulation and writes results to log.txt.
+ *
+ * @return 0 on successful completion.
+ */
 int main(){
     printf("=== Load Balancer Simulation ===\n");
 
@@ -48,11 +73,11 @@ int main(){
 
     cout << endl;
     config.printConfig();
-    
+
     LogFile logFile("log.txt", true);
 
     LoadBalancer loadBalancer(config, &logFile);
-    
+
     loadBalancer.init();
 
     cout << endl << "Load balancer initialized. Starting simulation..." << endl;

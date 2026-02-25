@@ -1,0 +1,27 @@
+var class_load_balancer =
+[
+    [ "LoadBalancer", "class_load_balancer.html#ab5cb030d42fd70f1fcd1d68d26454128", null ],
+    [ "~LoadBalancer", "class_load_balancer.html#a69951a7bb77be7fafd4d5ad6919abd80", null ],
+    [ "addNewRequest", "class_load_balancer.html#aac43b2c2a051257a60a9b7bb2eb26173", null ],
+    [ "addRequest", "class_load_balancer.html#a0c09331fa66cea29fffed53dd2a37261", null ],
+    [ "addServer", "class_load_balancer.html#a32f3f33a319622cf83b41cb9fcd09d3c", null ],
+    [ "canScaleUp", "class_load_balancer.html#a4860752f1af793dda441540ab92a166c", null ],
+    [ "checkAndScale", "class_load_balancer.html#a119d8ef8a1402831dd53f8d2c72b1f9b", null ],
+    [ "distributeRequests", "class_load_balancer.html#a21fe985c018f2ebeb9e4b1b3cc0289fa", null ],
+    [ "getCurrTime", "class_load_balancer.html#a73778c3c625e57715419440fd97bcb24", null ],
+    [ "getQueueSize", "class_load_balancer.html#ad2b3d3c28b4aef4bc64f6a9429e3e95c", null ],
+    [ "getServerCount", "class_load_balancer.html#a8e5a0eccaac6614b0df556f5972eb271", null ],
+    [ "init", "class_load_balancer.html#abf5eebbbb83f5f117ed0206cd488d6b1", null ],
+    [ "isIpBlocked", "class_load_balancer.html#a407dab0c93ece892e095ff4718775f99", null ],
+    [ "processServers", "class_load_balancer.html#af5b99b2c69d79311f1ec034df9cc009c", null ],
+    [ "removeServer", "class_load_balancer.html#ae7a0ae8542a9b7e55c633c0b8230bb09", null ],
+    [ "run", "class_load_balancer.html#a528909054cb20964cba1fb35ceb9003f", null ],
+    [ "blockedIpRanges", "class_load_balancer.html#aea9d907dc3dfdbce6c873935c019b52b", null ],
+    [ "config", "class_load_balancer.html#a6bdcf8cf79bfb5778d3c732173600936", null ],
+    [ "currTime", "class_load_balancer.html#aba868999746f5462fe8902a20f43dfb1", null ],
+    [ "lastScaleTime", "class_load_balancer.html#ac6f73ff4b6be7ee8528ff789ae7963e4", null ],
+    [ "logFile", "class_load_balancer.html#a3798e3c6809a389f1f47b8629e62d303", null ],
+    [ "nextServerId", "class_load_balancer.html#a318c12874d6a7a30e7e570deb6a1aff6", null ],
+    [ "requestQueue", "class_load_balancer.html#aa5982376d8696c4c24eccfa97d12e276", null ],
+    [ "servers", "class_load_balancer.html#a055221369a1ad9e899d5a3ceeec66ef6", null ]
+];

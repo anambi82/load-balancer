@@ -1,0 +1,25 @@
+var class_log_file =
+[
+    [ "LogFile", "class_log_file.html#a02d338cb89329293a25222878376e322", null ],
+    [ "~LogFile", "class_log_file.html#a440a7de2dcbb9facb68e56dc47cb9dea", null ],
+    [ "close", "class_log_file.html#a562305d5cd6f15bbebf4c0ad29fb553c", null ],
+    [ "getRequestsBlocked", "class_log_file.html#a6ab6add1218281494e12af46589b99a7", null ],
+    [ "getRequestsProcessed", "class_log_file.html#a260e7067a97b063a31d7d1d3995f7803", null ],
+    [ "getServersCreated", "class_log_file.html#a4b160542ebd8b8fec08abca6ff45b1d8", null ],
+    [ "getServersDeleted", "class_log_file.html#a74face553378d42cf2e07a0ffa9efb85", null ],
+    [ "logEvent", "class_log_file.html#a4f2b8740f37b6d392f9960d91efb91ee", null ],
+    [ "logRequestBlocked", "class_log_file.html#acb3501c500b7b52e1c76c86646728fcd", null ],
+    [ "logRequestProcessed", "class_log_file.html#aacaf536c37464e2dd8f7abca3b0df3ae", null ],
+    [ "logServerAdded", "class_log_file.html#a2c5df6d17c68664c46fea9aa3a5c6fbc", null ],
+    [ "logServerRemoved", "class_log_file.html#ada0db3b99edabe80e0d782c633c599b8", null ],
+    [ "logStatus", "class_log_file.html#a829d6cec97ceae6b744b68e8eebd1586", null ],
+    [ "setConsoleOutput", "class_log_file.html#a07cf7f62c053b217f467a9add5848530", null ],
+    [ "writeSummary", "class_log_file.html#a1231535bcc61b0404e04176bb90c2f90", null ],
+    [ "consoleOutput", "class_log_file.html#aa918d4a89e5de561d606ee91fa87b535", null ],
+    [ "filename", "class_log_file.html#abac4780a59badd1fb05290eb886a5dd5", null ],
+    [ "outFile", "class_log_file.html#a0ab2935b5167d0f39edd0df0684e0800", null ],
+    [ "requestsBlocked", "class_log_file.html#a5b64dac68829aaab38cd53f50bc6b867", null ],
+    [ "requestsProcessed", "class_log_file.html#ade8bf2ba3d843b81c960271ea638b108", null ],
+    [ "serversCreated", "class_log_file.html#aad5dcaf5d97f457371c443c00717bf50", null ],
+    [ "serversDeleted", "class_log_file.html#a74573afef76409adc8e9607c39464b58", null ]
+];

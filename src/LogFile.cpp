@@ -1,3 +1,8 @@
+/**
+ * @file LogFile.cpp
+ * @brief Implementation of the LogFile class.
+ */
+
 #include "LogFile.h"
 #include <iostream>
 #include <iomanip>
@@ -155,16 +160,12 @@ void LogFile::writeSummary(int totalTime, int finalServerCount, int finalQueueSi
     }
 }
 
-/**
- * @brief Closes the log file
- */
 void LogFile::close() {
     if (outFile.is_open()) {
         outFile.close();
     }
 }
 
-// Getters
 int LogFile::getServersCreated() const {
     return serversCreated;
 }

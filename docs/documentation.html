@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Balancer - API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── Layout ────────────────────────────────────────────────── */
+        .doc-layout {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        /* ── Sidebar ───────────────────────────────────────────────── */
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 70px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #7f8c8d;
+            margin-bottom: 12px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 6px;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 0.92rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .sidebar .file-group {
+            margin-bottom: 16px;
+        }
+
+        /* ── Doc content ───────────────────────────────────────────── */
+        .doc-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .class-section {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,.1);
+            padding: 30px 36px;
+            margin-bottom: 36px;
+        }
+
+        .class-section h2 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 6px;
+        }
+
+        .file-tag {
+            display: inline-block;
+            background: #eaf4fd;
+            color: #2980b9;
+            font-size: 0.78rem;
+            font-family: 'Courier New', monospace;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-bottom: 14px;
+        }
+
+        .class-brief {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        /* Members table */
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 28px;
+            font-size: 0.92rem;
+        }
+
+        .members-table th {
+            background: #f0f4f8;
+            color: #2c3e50;
+            text-align: left;
+            padding: 9px 14px;
+            border-bottom: 2px solid #dce3ea;
+        }
+
+        .members-table td {
+            padding: 8px 14px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .members-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .members-table code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            color: #c0392b;
+            background: #fdf4f4;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        /* Method blocks */
+        .method-block {
+            margin-bottom: 24px;
+            border-left: 4px solid #3498db;
+            padding-left: 16px;
+        }
+
+        .method-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .method-signature {
+            font-family: 'Courier New', monospace;
+            font-size: 0.92rem;
+            color: #1a252f;
+            background: #f7f9fb;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            word-break: break-all;
+        }
+
+        .method-brief {
+            font-size: 0.96rem;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        .param-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .param-list li {
+            font-size: 0.88rem;
+            color: #555;
+            padding: 2px 0;
+        }
+
+        .param-list li code {
+            font-family: 'Courier New', monospace;
+            color: #8e44ad;
+            background: #f9f2fe;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .return-line {
+            font-size: 0.88rem;
+            color: #27ae60;
+            margin-top: 6px;
+        }
+
+        .return-line code {
+            font-family: 'Courier New', monospace;
+            background: #eafaf1;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .throws-line {
+            font-size: 0.88rem;
+            color: #e74c3c;
+            margin-top: 4px;
+        }
+
+        .access-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 7px;
+            border-radius: 3px;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .badge-public  { background: #d5f5e3; color: #1e8449; }
+        .badge-private { background: #fde8e8; color: #a93226; }
+
+        .section-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #95a5a6;
+            margin: 22px 0 10px;
+        }
+
+        .macro-block {
+            background: #f7f9fb;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+        }
+
+        .macro-block code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            color: #c0392b;
+        }
+
+        @media (max-width: 768px) {
+            .doc-layout { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="home-button">Home</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Project 3 - Load Balancer</h1>
+            <h2>API Documentation</h2>
+        </header>
+
+        <div class="doc-layout">
+
+            <!-- ── Sidebar ──────────────────────────────────────── -->
+            <aside class="sidebar">
+                <div class="file-group">
+                    <h3>Files</h3>
+                    <ul>
+                        <li><a href="#main">main.cpp</a></li>
+                    </ul>
+                </div>
+                <div class="file-group">
+                    <h3>Classes</h3>
+                    <ul>
+                        <li><a href="#request">Request</a></li>
+                        <li><a href="#requestqueue">RequestQueue</a></li>
+                        <li><a href="#webserver">WebServer</a></li>
+                        <li><a href="#iprange">IpRange</a></li>
+                        <li><a href="#config">Config</a></li>
+                        <li><a href="#logfile">LogFile</a></li>
+                        <li><a href="#loadbalancer">LoadBalancer</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- ── Main content ─────────────────────────────────── -->
+            <main class="doc-content">
+
+                <!-- ── main.cpp ───────────────────────────────── -->
+                <section class="class-section" id="main">
+                    <h2>main.cpp</h2>
+                    <span class="file-tag">src/main.cpp</span>
+                    <p class="class-brief">
+                        Entry point for the load balancer simulation. Loads configuration from
+                        <code>config.txt</code>, prompts the user for initial server count and run
+                        duration, then initializes and runs the <code>LoadBalancer</code>,
+                        writing all events to <code>log.txt</code>.
+                    </p>
+
+                    <div class="section-label">Free Functions</div>
+
+                    <div class="method-block">
+                        <div class="method-signature">int getValidInt(const string&amp; prompt, int minVal, int maxVal)</div>
+                        <p class="method-brief">Prompts the user for an integer within a valid range, retrying on bad input.</p>
+                        <ul class="param-list">
+                            <li><code>prompt</code> — Text displayed to the user before reading input.</li>
+                            <li><code>minVal</code> — Minimum accepted value (inclusive).</li>
+                            <li><code>maxVal</code> — Maximum accepted value (inclusive).</li>
+                        </ul>
+                        <p class="return-line">Returns: A valid integer entered by the user within [minVal, maxVal].</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature">int main()</div>
+                        <p class="method-brief">
+                            Application entry point. Loads simulation settings from <code>config.txt</code>
+                            (falls back to defaults on failure), accepts user overrides for server count and
+                            run time, then runs the full LoadBalancer simulation and writes results to
+                            <code>log.txt</code>.
+                        </p>
+                        <p class="return-line">Returns: <code>0</code> on successful completion.</p>
+                    </div>
+                </section>
+
+                <!-- ── Request ────────────────────────────────── -->
+                <section class="class-section" id="request">
+                    <h2>Request</h2>
+                    <span class="file-tag">src/Request.h &nbsp;|&nbsp; src/Request.cpp</span>
+                    <p class="class-brief">
+                        Represents a single network request routed through the load balancer.
+                        Stores the source IP, destination IP, estimated processing time, and job type
+                        (<code>'P'</code> for processing, <code>'S'</code> for streaming). Also provides
+                        static factory methods for generating random requests and IPs.
+                    </p>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>string</code></td><td><code>ipIn</code></td><td>Source IP address of the request.</td></tr>
+                            <tr><td><code>string</code></td><td><code>ipOut</code></td><td>Destination IP address of the request.</td></tr>
+                            <tr><td><code>int</code></td><td><code>processTime</code></td><td>Number of clock cycles required to process this request.</td></tr>
+                            <tr><td><code>char</code></td><td><code>jobType</code></td><td>Job type: <code>'P'</code> (processing) or <code>'S'</code> (streaming).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>Request()</div>
+                        <p class="method-brief">Default constructor. Initializes all fields to zero/default values.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>Request(string ipIn, string ipOut, int processTime, char jobType)</div>
+                        <p class="method-brief">Constructs a Request with explicit field values.</p>
+                        <ul class="param-list">
+                            <li><code>ipIn</code> — Source IP address.</li>
+                            <li><code>ipOut</code> — Destination IP address.</li>
+                            <li><code>processTime</code> — Number of clock cycles to process this request.</li>
+                            <li><code>jobType</code> — Job type character (<code>'P'</code> or <code>'S'</code>).</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>string getIpIn() const</div>
+                        <p class="method-brief">Returns the source IP address.</p>
+                        <p class="return-line">Returns: Source IP as a string.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>string getIpOut() const</div>
+                        <p class="method-brief">Returns the destination IP address.</p>
+                        <p class="return-line">Returns: Destination IP as a string.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int getProcessTime() const</div>
+                        <p class="method-brief">Returns the processing time in clock cycles.</p>
+                        <p class="return-line">Returns: Processing time.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>char getJobType() const</div>
+                        <p class="method-brief">Returns the job type character.</p>
+                        <p class="return-line">Returns: <code>'P'</code> for processing or <code>'S'</code> for streaming.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public static</span>string generateRandomIp()</div>
+                        <p class="method-brief">Generates a random IPv4 address string.</p>
+                        <p class="return-line">Returns: A randomly generated IP address in <code>"a.b.c.d"</code> format.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public static</span>Request generateRandomRequest(int minTime, int maxTime)</div>
+                        <p class="method-brief">Generates a Request with random source/destination IPs and a random process time.</p>
+                        <ul class="param-list">
+                            <li><code>minTime</code> — Minimum processing time (inclusive).</li>
+                            <li><code>maxTime</code> — Maximum processing time (inclusive).</li>
+                        </ul>
+                        <p class="return-line">Returns: A randomly generated Request object.</p>
+                    </div>
+                </section>
+
+                <!-- ── RequestQueue ───────────────────────────── -->
+                <section class="class-section" id="requestqueue">
+                    <h2>RequestQueue</h2>
+                    <span class="file-tag">src/RequestQueue.h &nbsp;|&nbsp; src/RequestQueue.cpp</span>
+                    <p class="class-brief">
+                        A FIFO queue that buffers incoming Request objects awaiting server assignment.
+                        Wraps <code>std::queue&lt;Request&gt;</code> with bounds-checked access and
+                        convenience methods used by the LoadBalancer to manage pending requests.
+                    </p>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>queue&lt;Request&gt;</code></td><td><code>queue</code></td><td>Underlying standard queue of Request objects.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>RequestQueue()</div>
+                        <p class="method-brief">Default constructor. Creates an empty request queue.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void push(const Request&amp; request)</div>
+                        <p class="method-brief">Adds a request to the back of the queue.</p>
+                        <ul class="param-list">
+                            <li><code>request</code> — The Request to enqueue.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>Request pop()</div>
+                        <p class="method-brief">Removes and returns the request at the front of the queue.</p>
+                        <p class="return-line">Returns: The oldest Request in the queue.</p>
+                        <p class="throws-line">Throws: <code>std::runtime_error</code> if the queue is empty.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>bool isEmpty() const</div>
+                        <p class="method-brief">Checks whether the queue contains no requests.</p>
+                        <p class="return-line">Returns: <code>true</code> if the queue is empty, <code>false</code> otherwise.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int size() const</div>
+                        <p class="method-brief">Returns the number of requests currently in the queue.</p>
+                        <p class="return-line">Returns: Current queue size.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>Request front() const</div>
+                        <p class="method-brief">Returns the request at the front of the queue without removing it.</p>
+                        <p class="return-line">Returns: A copy of the front Request.</p>
+                        <p class="throws-line">Throws: <code>std::runtime_error</code> if the queue is empty.</p>
+                    </div>
+                </section>
+
+                <!-- ── WebServer ──────────────────────────────── -->
+                <section class="class-section" id="webserver">
+                    <h2>WebServer</h2>
+                    <span class="file-tag">src/WebServer.h &nbsp;|&nbsp; src/WebServer.cpp</span>
+                    <p class="class-brief">
+                        Models a single server that processes one Request at a time. Each WebServer has
+                        a unique ID and tracks whether it is currently busy, the request it is processing,
+                        and how many clock cycles remain before the current request completes.
+                    </p>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>int</code></td><td><code>serverId</code></td><td>Unique identifier assigned by the LoadBalancer.</td></tr>
+                            <tr><td><code>bool</code></td><td><code>busy</code></td><td>True if the server is currently processing a request.</td></tr>
+                            <tr><td><code>Request</code></td><td><code>currRequest</code></td><td>The request currently being processed.</td></tr>
+                            <tr><td><code>int</code></td><td><code>timeRemaining</code></td><td>Clock cycles remaining to finish the current request.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>WebServer(int id)</div>
+                        <p class="method-brief">Constructs a WebServer with the given ID in an idle state.</p>
+                        <ul class="param-list">
+                            <li><code>id</code> — Unique server identifier.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>bool isBusy() const</div>
+                        <p class="method-brief">Checks whether the server is currently processing a request.</p>
+                        <p class="return-line">Returns: <code>true</code> if busy, <code>false</code> if idle.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int getServerId() const</div>
+                        <p class="method-brief">Returns the unique identifier for this server.</p>
+                        <p class="return-line">Returns: Server ID.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>Request getCurrentRequest() const</div>
+                        <p class="method-brief">Returns a copy of the request currently being processed.</p>
+                        <p class="return-line">Returns: Current Request object.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int getTimeRemaining() const</div>
+                        <p class="method-brief">Returns the number of clock cycles remaining for the current request.</p>
+                        <p class="return-line">Returns: Remaining processing time in clock cycles.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void assignRequest(const Request&amp; request)</div>
+                        <p class="method-brief">Assigns a request to this server and marks it as busy.</p>
+                        <ul class="param-list">
+                            <li><code>request</code> — The Request to process.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>bool advanceClockCycle()</div>
+                        <p class="method-brief">
+                            Advances the server by one clock cycle. Decrements the remaining processing
+                            time. If it reaches zero the server becomes idle and the request is considered complete.
+                        </p>
+                        <p class="return-line">Returns: <code>true</code> if the current request just completed, <code>false</code> otherwise.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void setIdle()</div>
+                        <p class="method-brief">Forcefully sets the server to idle, clearing any remaining work.</p>
+                    </div>
+                </section>
+
+                <!-- ── IpRange ────────────────────────────────── -->
+                <section class="class-section" id="iprange">
+                    <h2>IpRange</h2>
+                    <span class="file-tag">src/IpRange.h &nbsp;|&nbsp; src/IpRange.cpp</span>
+                    <p class="class-brief">
+                        Represents an inclusive range of IPv4 addresses used for IP blocking.
+                        Converts IPv4 addresses to numeric form for efficient range comparisons.
+                        Used by the LoadBalancer to reject requests whose source IP falls within
+                        a blocked range.
+                    </p>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>string</code></td><td><code>startIp</code></td><td>Lower bound of the IP range (inclusive).</td></tr>
+                            <tr><td><code>string</code></td><td><code>endIp</code></td><td>Upper bound of the IP range (inclusive).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Private Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>long ipToNum(const string&amp; ip) const</div>
+                        <p class="method-brief">Converts a dotted-decimal IPv4 string to a 32-bit numeric value.</p>
+                        <ul class="param-list">
+                            <li><code>ip</code> — IPv4 address string in <code>"a.b.c.d"</code> format.</li>
+                        </ul>
+                        <p class="return-line">Returns: Numeric representation of the IP address.</p>
+                    </div>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>IpRange(const string&amp; startIp, const string&amp; endIp)</div>
+                        <p class="method-brief">Constructs an IpRange with the given start and end addresses.</p>
+                        <ul class="param-list">
+                            <li><code>startIp</code> — Lower bound of the range (inclusive), in <code>"a.b.c.d"</code> format.</li>
+                            <li><code>endIp</code> — Upper bound of the range (inclusive), in <code>"a.b.c.d"</code> format.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>bool contains(const string&amp; ip) const</div>
+                        <p class="method-brief">Checks whether the given IP address falls within this range.</p>
+                        <ul class="param-list">
+                            <li><code>ip</code> — IPv4 address to test, in <code>"a.b.c.d"</code> format.</li>
+                        </ul>
+                        <p class="return-line">Returns: <code>true</code> if ip is within [startIp, endIp], <code>false</code> otherwise.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>string getStartIp() const</div>
+                        <p class="method-brief">Returns the lower bound of the IP range.</p>
+                        <p class="return-line">Returns: Start IP address string.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>string getEndIp() const</div>
+                        <p class="method-brief">Returns the upper bound of the IP range.</p>
+                        <p class="return-line">Returns: End IP address string.</p>
+                    </div>
+                </section>
+
+                <!-- ── Config ─────────────────────────────────── -->
+                <section class="class-section" id="config">
+                    <h2>Config</h2>
+                    <span class="file-tag">src/Config.h &nbsp;|&nbsp; src/Config.cpp</span>
+                    <p class="class-brief">
+                        Holds all configuration parameters for the load balancer simulation. Parameters
+                        can be loaded from a <code>key=value</code> config file or set to built-in defaults.
+                        The LoadBalancer reads this object at startup to determine initial server count,
+                        scaling thresholds, request probabilities, and blocked IP ranges.
+                    </p>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>int</code></td><td><code>initServers</code></td><td>Number of servers to create at startup.</td></tr>
+                            <tr><td><code>int</code></td><td><code>totalRunTime</code></td><td>Total number of clock cycles to simulate.</td></tr>
+                            <tr><td><code>int</code></td><td><code>minQueuePerServer</code></td><td>Queue depth per server below which scale-down is triggered.</td></tr>
+                            <tr><td><code>int</code></td><td><code>maxQueuePerServer</code></td><td>Queue depth per server above which scale-up is triggered.</td></tr>
+                            <tr><td><code>int</code></td><td><code>scaleCooldownTime</code></td><td>Minimum clock cycles between consecutive scaling events.</td></tr>
+                            <tr><td><code>int</code></td><td><code>minProcessTime</code></td><td>Minimum processing time for a generated request (cycles).</td></tr>
+                            <tr><td><code>int</code></td><td><code>maxProcessTime</code></td><td>Maximum processing time for a generated request (cycles).</td></tr>
+                            <tr><td><code>double</code></td><td><code>newRequestProb</code></td><td>Probability [0, 1] of a new request arriving each cycle.</td></tr>
+                            <tr><td><code>vector&lt;IpRange&gt;</code></td><td><code>blockedIpRanges</code></td><td>IP ranges whose requests will be rejected.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Private Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void parseBlockedIpRanges(const string&amp; rangesStr)</div>
+                        <p class="method-brief">Parses a comma-separated list of <code>"startIp-endIp"</code> range strings.</p>
+                        <ul class="param-list">
+                            <li><code>rangesStr</code> — Comma-separated string of IP ranges (e.g. <code>"10.0.0.0-10.0.0.255"</code>).</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void setDefault()</div>
+                        <p class="method-brief">Initializes all fields to their built-in default values.</p>
+                    </div>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>Config()</div>
+                        <p class="method-brief">Default constructor. Calls <code>setDefault()</code> to initialize all fields.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>bool loadFromFile(const string&amp; filename)</div>
+                        <p class="method-brief">
+                            Loads configuration from a <code>key=value</code> text file. Lines starting
+                            with <code>#</code> and blank lines are ignored. Unrecognized keys are silently skipped.
+                        </p>
+                        <ul class="param-list">
+                            <li><code>filename</code> — Path to the configuration file.</li>
+                        </ul>
+                        <p class="return-line">Returns: <code>true</code> if the file was opened and parsed successfully, <code>false</code> otherwise.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void setInitServers(int count)</div>
+                        <p class="method-brief">Overrides the initial server count (e.g., from user input).</p>
+                        <ul class="param-list"><li><code>count</code> — New initial server count.</li></ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void setTotalRunTime(int time)</div>
+                        <p class="method-brief">Overrides the total simulation run time (e.g., from user input).</p>
+                        <ul class="param-list"><li><code>time</code> — New run time in clock cycles.</li></ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void printConfig() const</div>
+                        <p class="method-brief">Prints all current configuration values to standard output.</p>
+                    </div>
+
+                    <p class="section-label">Getters</p>
+                    <table class="members-table">
+                        <thead><tr><th>Signature</th><th>Returns</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>int getInitServers() const</code></td><td>Initial number of servers.</td></tr>
+                            <tr><td><code>int getTotalRunTime() const</code></td><td>Total simulation run time in clock cycles.</td></tr>
+                            <tr><td><code>int getMinQueuePerServer() const</code></td><td>Per-server queue minimum threshold for scale-down.</td></tr>
+                            <tr><td><code>int getMaxQueuePerServer() const</code></td><td>Per-server queue maximum threshold for scale-up.</td></tr>
+                            <tr><td><code>int getScaleCooldownTime() const</code></td><td>Minimum clock cycles between scaling events.</td></tr>
+                            <tr><td><code>int getMinProcessTime() const</code></td><td>Minimum request processing time in clock cycles.</td></tr>
+                            <tr><td><code>int getMaxProcessTime() const</code></td><td>Maximum request processing time in clock cycles.</td></tr>
+                            <tr><td><code>double getNewRequestProb() const</code></td><td>Per-cycle probability of a new request arriving.</td></tr>
+                            <tr><td><code>const vector&lt;IpRange&gt;&amp; getBlockedIpRanges() const</code></td><td>Read-only reference to the blocked IP range list.</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ── LogFile ────────────────────────────────── -->
+                <section class="class-section" id="logfile">
+                    <h2>LogFile</h2>
+                    <span class="file-tag">src/LogFile.h &nbsp;|&nbsp; src/LogFile.cpp</span>
+                    <p class="class-brief">
+                        Writes simulation events to a log file and optionally to the console.
+                        Each log entry is prefixed with a zero-padded clock cycle number. Also tracks
+                        aggregate statistics (servers created/deleted, requests processed/blocked) and
+                        writes a formatted summary at the end of the simulation.
+                    </p>
+
+                    <div class="section-label">ANSI Color Macros</div>
+                    <div class="macro-block">
+                        <code>RESET</code> &nbsp;·&nbsp;
+                        <code>RED</code> &nbsp;·&nbsp;
+                        <code>GREEN</code> &nbsp;·&nbsp;
+                        <code>BLUE</code> &nbsp;·&nbsp;
+                        <code>MAGENTA</code> &nbsp;·&nbsp;
+                        <code>CYAN</code> &nbsp;·&nbsp;
+                        <code>WHITE</code> &nbsp;·&nbsp;
+                        <code>BOLD</code>
+                        <p style="margin-top:8px;font-size:0.88rem;color:#666;">
+                            ANSI escape codes used to colorize console output. Defined in <code>LogFile.h</code>.
+                        </p>
+                    </div>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>string</code></td><td><code>filename</code></td><td>Path to the output log file.</td></tr>
+                            <tr><td><code>ofstream</code></td><td><code>outFile</code></td><td>Output file stream.</td></tr>
+                            <tr><td><code>int</code></td><td><code>serversCreated</code></td><td>Running count of servers added during simulation.</td></tr>
+                            <tr><td><code>int</code></td><td><code>serversDeleted</code></td><td>Running count of servers removed during simulation.</td></tr>
+                            <tr><td><code>int</code></td><td><code>requestsProcessed</code></td><td>Running count of successfully completed requests.</td></tr>
+                            <tr><td><code>int</code></td><td><code>requestsBlocked</code></td><td>Running count of requests rejected due to IP blocking.</td></tr>
+                            <tr><td><code>bool</code></td><td><code>consoleOutput</code></td><td>Whether events are also printed to stdout.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>LogFile(const string&amp; filename, bool enableConsole = true)</div>
+                        <p class="method-brief">Opens the log file and initializes all counters.</p>
+                        <ul class="param-list">
+                            <li><code>filename</code> — Path to the log file to create/overwrite.</li>
+                            <li><code>enableConsole</code> — If <code>true</code>, events are also echoed to stdout (default: <code>true</code>).</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>~LogFile()</div>
+                        <p class="method-brief">Destructor. Closes the log file if still open.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void setConsoleOutput(bool enable)</div>
+                        <p class="method-brief">Enables or disables mirroring log entries to the console.</p>
+                        <ul class="param-list">
+                            <li><code>enable</code> — <code>true</code> to enable console output, <code>false</code> to suppress it.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void logEvent(int cycle, const string&amp; message)</div>
+                        <p class="method-brief">Logs a generic simulation event message.</p>
+                        <ul class="param-list">
+                            <li><code>cycle</code> — Current clock cycle number.</li>
+                            <li><code>message</code> — Descriptive event message to record.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void logServerAdded(int cycle, int serverId)</div>
+                        <p class="method-brief">Logs the creation of a new web server.</p>
+                        <ul class="param-list">
+                            <li><code>cycle</code> — Current clock cycle number.</li>
+                            <li><code>serverId</code> — Unique ID of the server that was added.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void logServerRemoved(int cycle, int serverId)</div>
+                        <p class="method-brief">Logs the removal of an existing web server.</p>
+                        <ul class="param-list">
+                            <li><code>cycle</code> — Current clock cycle number.</li>
+                            <li><code>serverId</code> — Unique ID of the server that was removed.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void logRequestProcessed(int cycle, const string&amp; ipIn, const string&amp; ipOut)</div>
+                        <p class="method-brief">Logs the successful completion of a request.</p>
+                        <ul class="param-list">
+                            <li><code>cycle</code> — Current clock cycle number.</li>
+                            <li><code>ipIn</code> — Source IP address of the completed request.</li>
+                            <li><code>ipOut</code> — Destination IP address of the completed request.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void logRequestBlocked(int cycle, const string&amp; ip)</div>
+                        <p class="method-brief">Logs a request that was rejected due to a blocked IP range.</p>
+                        <ul class="param-list">
+                            <li><code>cycle</code> — Current clock cycle number.</li>
+                            <li><code>ip</code> — Source IP address of the blocked request.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void logStatus(int cycle, int queueSize, int serverCount)</div>
+                        <p class="method-brief">Logs a periodic status snapshot of the simulation state.</p>
+                        <ul class="param-list">
+                            <li><code>cycle</code> — Current clock cycle number.</li>
+                            <li><code>queueSize</code> — Number of requests currently waiting in the queue.</li>
+                            <li><code>serverCount</code> — Number of active servers at this cycle.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void writeSummary(int totalTime, int finalServerCount, int finalQueueSize)</div>
+                        <p class="method-brief">Writes a formatted summary of the entire simulation run.</p>
+                        <ul class="param-list">
+                            <li><code>totalTime</code> — Total number of clock cycles the simulation ran.</li>
+                            <li><code>finalServerCount</code> — Number of servers active at simulation end.</li>
+                            <li><code>finalQueueSize</code> — Number of requests remaining in the queue at simulation end.</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void close()</div>
+                        <p class="method-brief">Explicitly closes the log file output stream.</p>
+                    </div>
+
+                    <p class="section-label">Stat Getters</p>
+                    <table class="members-table">
+                        <thead><tr><th>Signature</th><th>Returns</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>int getServersCreated() const</code></td><td>Total servers created during simulation.</td></tr>
+                            <tr><td><code>int getServersDeleted() const</code></td><td>Total servers deleted during simulation.</td></tr>
+                            <tr><td><code>int getRequestsProcessed() const</code></td><td>Total requests successfully processed.</td></tr>
+                            <tr><td><code>int getRequestsBlocked() const</code></td><td>Total requests blocked due to IP filtering.</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ── LoadBalancer ───────────────────────────── -->
+                <section class="class-section" id="loadbalancer">
+                    <h2>LoadBalancer</h2>
+                    <span class="file-tag">src/LoadBalancer.h &nbsp;|&nbsp; src/LoadBalancer.cpp</span>
+                    <p class="class-brief">
+                        Orchestrates the simulation of a dynamically scaling server pool. On each clock
+                        cycle the LoadBalancer: (1) probabilistically generates a new incoming request,
+                        (2) advances all busy servers by one cycle, completing requests where due,
+                        (3) distributes queued requests to idle servers, and (4) evaluates scaling
+                        thresholds and adds or removes servers as needed. Requests originating from
+                        blocked IP ranges are dropped and logged. Autoscaling is gated by a configurable
+                        cooldown period to prevent thrashing.
+                    </p>
+
+                    <div class="section-label">Private Members</div>
+                    <table class="members-table">
+                        <thead><tr><th>Type</th><th>Name</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>vector&lt;WebServer*&gt;</code></td><td><code>servers</code></td><td>Pool of dynamically managed server instances.</td></tr>
+                            <tr><td><code>RequestQueue</code></td><td><code>requestQueue</code></td><td>FIFO queue of pending requests.</td></tr>
+                            <tr><td><code>vector&lt;IpRange&gt;</code></td><td><code>blockedIpRanges</code></td><td>IP ranges that are filtered at ingress.</td></tr>
+                            <tr><td><code>Config</code></td><td><code>config</code></td><td>Simulation configuration parameters.</td></tr>
+                            <tr><td><code>LogFile*</code></td><td><code>logFile</code></td><td>Pointer to the shared log file (non-owning).</td></tr>
+                            <tr><td><code>int</code></td><td><code>currTime</code></td><td>Current simulation clock cycle.</td></tr>
+                            <tr><td><code>int</code></td><td><code>nextServerId</code></td><td>ID to assign to the next server created.</td></tr>
+                            <tr><td><code>int</code></td><td><code>lastScaleTime</code></td><td>Clock cycle at which the last scaling event occurred.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-label">Private Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>bool isIpBlocked(const string&amp; ip) const</div>
+                        <p class="method-brief">Checks whether the given IP is covered by any blocked range.</p>
+                        <ul class="param-list"><li><code>ip</code> — IPv4 address string to test.</li></ul>
+                        <p class="return-line">Returns: <code>true</code> if the IP is blocked, <code>false</code> otherwise.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>bool canScaleUp() const</div>
+                        <p class="method-brief">Checks whether enough time has elapsed since the last scaling event.</p>
+                        <p class="return-line">Returns: <code>true</code> if scaling is permitted at the current cycle, <code>false</code> if still in cooldown.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void checkAndScale()</div>
+                        <p class="method-brief">
+                            Evaluates queue depth against thresholds and triggers scale-up or scale-down.
+                            Does nothing if the cooldown period has not elapsed since the last scaling event.
+                        </p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void addServer()</div>
+                        <p class="method-brief">Allocates a new WebServer, adds it to the pool, and logs the event.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>bool removeServer()</div>
+                        <p class="method-brief">Removes the first idle server from the pool and logs the event.</p>
+                        <p class="return-line">Returns: <code>true</code> if a server was successfully removed, <code>false</code> if none are idle or only one server remains.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void distributeRequests()</div>
+                        <p class="method-brief">
+                            Assigns queued requests to idle servers. Iterates over the server pool
+                            and dequeues one request per idle server.
+                        </p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void processServers()</div>
+                        <p class="method-brief">Advances all busy servers by one clock cycle and logs completed requests.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-private">private</span>void addNewRequest()</div>
+                        <p class="method-brief">
+                            Randomly generates and enqueues a new request based on the configured probability.
+                        </p>
+                    </div>
+
+                    <div class="section-label">Public Methods</div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>LoadBalancer(const Config&amp; config, LogFile* logFile)</div>
+                        <p class="method-brief">Constructs a LoadBalancer with the given configuration and log file.</p>
+                        <ul class="param-list">
+                            <li><code>config</code> — Simulation configuration parameters.</li>
+                            <li><code>logFile</code> — Pointer to an open LogFile for event recording (must outlive this object).</li>
+                        </ul>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>~LoadBalancer()</div>
+                        <p class="method-brief">Destructor. Frees all dynamically allocated WebServer objects.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void init()</div>
+                        <p class="method-brief">
+                            Creates the initial server pool and seeds the request queue. Spins up
+                            <code>initServers</code> servers and pre-fills the queue with
+                            <code>initServers × 100</code> randomly generated requests before the main loop begins.
+                        </p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>void run()</div>
+                        <p class="method-brief">
+                            Runs the main simulation loop for the configured number of clock cycles.
+                            Each cycle: generates requests, processes servers, distributes work, and checks scaling.
+                            Logs a status snapshot every <code>totalRunTime / 20</code> cycles.
+                        </p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>bool addRequest(const Request&amp; request)</div>
+                        <p class="method-brief">Submits a request to the queue, blocking it if the source IP is filtered.</p>
+                        <ul class="param-list">
+                            <li><code>request</code> — The Request to add.</li>
+                        </ul>
+                        <p class="return-line">Returns: <code>true</code> if the request was enqueued, <code>false</code> if it was blocked.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int getQueueSize() const</div>
+                        <p class="method-brief">Returns the current number of requests waiting in the queue.</p>
+                        <p class="return-line">Returns: Queue size.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int getServerCount() const</div>
+                        <p class="method-brief">Returns the number of servers currently in the pool.</p>
+                        <p class="return-line">Returns: Server count.</p>
+                    </div>
+
+                    <div class="method-block">
+                        <div class="method-signature"><span class="access-badge badge-public">public</span>int getCurrTime() const</div>
+                        <p class="method-brief">Returns the current simulation clock cycle.</p>
+                        <p class="return-line">Returns: Current time.</p>
+                    </div>
+                </section>
+
+            </main>
+        </div><!-- /.doc-layout -->
+
+        <footer>
+            <p>CSCE 412 - Cloud Computing | Aditya Nambi</p>
+        </footer>
+    </div><!-- /.container -->
+</body>
+</html>
