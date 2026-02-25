@@ -61,6 +61,19 @@ class LogFile {
         void setConsoleOutput(bool enable);
 
         /**
+         * @brief Writes the simulation starting configuration header to the log file and console.
+         * @param initServers Number of servers created at startup.
+         * @param runTime Total simulation run time in clock cycles.
+         * @param minProcessTime Minimum request processing time in clock cycles.
+         * @param maxProcessTime Maximum request processing time in clock cycles.
+         * @param startingQueueSize Number of requests pre-loaded into the queue at init.
+         * @param ipRangeStart Lower bound of the blocked IP range (or "N/A" if none configured).
+         * @param ipRangeEnd Upper bound of the blocked IP range (or "N/A" if none configured).
+         */
+        void logHeader(int initServers, int runTime, int minProcessTime, int maxProcessTime,
+                    int startingQueueSize, const std::string& ipRangeStart, const std::string& ipRangeEnd);
+
+        /**
          * @brief Logs a generic simulation event message.
          * @param cycle Current clock cycle number.
          * @param message Descriptive event message to record.
@@ -82,12 +95,24 @@ class LogFile {
         void logServerRemoved(int cycle, int serverId);
 
         /**
+         * @brief Logs the start of request processing by a server.
+         * @param cycle Current clock cycle number.
+         * @param serverId Unique ID of the server that accepted the request.
+         * @param ipIn Source IP address of the request.
+         * @param ipOut Destination IP address of the request.
+         * @param processTime Number of clock cycles required to process the request.
+         */
+        void logRequestStarted(int cycle, int serverId, const std::string& ipIn, const std::string& ipOut, int processTime);
+
+        /**
          * @brief Logs the successful completion of a request.
          * @param cycle Current clock cycle number.
+         * @param serverId Unique ID of the server that finished the request.
          * @param ipIn Source IP address of the completed request.
          * @param ipOut Destination IP address of the completed request.
+         * @param processTime Number of clock cycles the request took to process.
          */
-        void logRequestProcessed(int cycle, const std::string& ipIn, const std::string& ipOut);
+        void logRequestProcessed(int cycle, int serverId, const std::string& ipIn, const std::string& ipOut, int processTime);
 
         /**
          * @brief Logs a request that was rejected due to a blocked IP range.

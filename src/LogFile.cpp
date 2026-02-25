@@ -28,6 +28,42 @@ void LogFile::setConsoleOutput(bool enable) {
     consoleOutput = enable;
 }
 
+void LogFile::logHeader(int initServers, int runTime, int minProcessTime, int maxProcessTime,
+                        int startingQueueSize, const std::string& ipRangeStart, const std::string& ipRangeEnd) {
+    std::string separator = "================================================================================";
+
+    if (outFile.is_open()) {
+        outFile << separator << std::endl;
+        outFile << "                        LOAD BALANCER STARTING STATS" << std::endl;
+        outFile << separator << std::endl;
+        outFile << std::endl;
+        outFile << "INITIAL CONFIGURATION:" << std::endl;
+        outFile << "  Starting Number of Servers:  " << initServers << std::endl;
+        outFile << "  Starting Queue Size:         " << startingQueueSize << std::endl;
+        outFile << "  Total Run Time:              " << runTime << " clock cycles" << std::endl;
+        outFile << "  Task Time Range:             " << minProcessTime << " - " << maxProcessTime << " clock cycles" << std::endl;
+        outFile << "  Blocked IP Range Start:      " << ipRangeStart << std::endl;
+        outFile << "  Blocked IP Range End:        " << ipRangeEnd << std::endl;
+        outFile << std::endl;
+    }
+
+    if (consoleOutput) {
+        std::cout << BOLD << BLUE << separator << RESET << std::endl;
+        std::cout << BOLD << BLUE << "                        LOAD BALANCER STARTING STATS" << RESET << std::endl;
+        std::cout << BOLD << BLUE << separator << RESET << std::endl;
+        std::cout << std::endl;
+        std::cout << BOLD << WHITE << "INITIAL CONFIGURATION:" << RESET << std::endl;
+        std::cout << "  Starting Number of Servers:  " << GREEN << initServers << RESET << std::endl;
+        std::cout << "  Starting Queue Size:         " << GREEN << startingQueueSize << RESET << std::endl;
+        std::cout << "  Total Run Time:              " << GREEN << runTime << " clock cycles" << RESET << std::endl;
+        std::cout << "  Task Time Range:             " << GREEN << minProcessTime << " - " << maxProcessTime << " clock cycles" << RESET << std::endl;
+        std::cout << "  Blocked IP Range Start:      " << CYAN << ipRangeStart << RESET << std::endl;
+        std::cout << "  Blocked IP Range End:        " << CYAN << ipRangeEnd << RESET << std::endl;
+        std::cout << std::endl;
+    }
+}
+
+
 void LogFile::logEvent(int cycle, const std::string& message) {
     if (outFile.is_open()) {
         outFile << "[Cycle " << std::setw(5) << std::setfill('0') << cycle << "] " 
@@ -69,19 +105,37 @@ void LogFile::logServerRemoved(int cycle, int serverId) {
     }
 }
 
-void LogFile::logRequestProcessed(int cycle, const std::string& ipIn, const std::string& ipOut) {
+void LogFile::logRequestStarted(int cycle, int serverId, const std::string& ipIn, const std::string& ipOut, int processTime) {
+    if (outFile.is_open()) {
+        outFile << "[Cycle " << std::setw(5) << std::setfill('0') << cycle << "] "
+                << "STARTED: Server " << serverId << " processing request " 
+                << ipIn << " -> " << ipOut << " (Time: " << processTime << " cycles)" << std::endl;
+    }
+
+    if (consoleOutput) {
+        std::cout << BLUE << "[Cycle " << std::setw(5) << std::setfill('0') << cycle << "] "
+                  << "STARTED: Server " << serverId << " processing request " 
+                  << ipIn << " -> " << ipOut << " (Time: " << processTime << " cycles)" << RESET << std::endl;
+    }
+}
+
+void LogFile::logRequestProcessed(int cycle, int serverId, const std::string& ipIn, const std::string& ipOut, int processTime) {
     requestsProcessed++;
     
     if (outFile.is_open()) {
         outFile << "[Cycle " << std::setw(5) << std::setfill('0') << cycle << "] "
-                << "COMPLETE: Request " << ipIn << " -> " << ipOut << " finished" << std::endl;
+                << "COMPLETE: Server " << serverId << " finished request " 
+                << ipIn << " -> " << ipOut << " (Time taken: " << processTime << " cycles)" << std::endl;
     }
 
     if (consoleOutput) {
         std::cout << CYAN << "[Cycle " << std::setw(5) << std::setfill('0') << cycle << "] "
-                  << "COMPLETE: Request " << ipIn << " -> " << ipOut << " finished" << RESET << std::endl;
+                  << "COMPLETE: Server " << serverId << " finished request " 
+                  << ipIn << " -> " << ipOut << " (Time taken: " << processTime << " cycles)" << RESET << std::endl;
     }
 }
+
+
 
 void LogFile::logRequestBlocked(int cycle, const std::string& ip) {
     requestsBlocked++;

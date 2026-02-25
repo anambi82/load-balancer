@@ -81,6 +81,8 @@ void LoadBalancer::distributeRequests() {
         if (!server->isBusy() && !requestQueue.isEmpty()){
             Request req = requestQueue.pop();
             server->assignRequest(req);
+
+            logFile->logRequestStarted(currTime, server->getServerId(), req.getIpIn(), req.getIpOut(), req.getProcessTime());
         }
     }
 }
@@ -91,7 +93,7 @@ void LoadBalancer::processServers() {
             bool completed = server->advanceClockCycle();
             if (completed){
                 Request req = server->getCurrentRequest();
-                logFile->logRequestProcessed(currTime, req.getIpIn(), req.getIpOut());
+                logFile->logRequestProcessed(currTime, server->getServerId(),req.getIpIn(), req.getIpOut(), req.getProcessTime());                
                 server->setIdle();
             }
         }
@@ -151,6 +153,26 @@ void LoadBalancer::run() {
     }
 
     logFile->logEvent(currTime, "RUN: Simulation complete");
+    
+    std::string ipStart = "N/A";
+    std::string ipEnd = "N/A";
+    
+    if (!blockedIpRanges.empty()) {
+        ipStart = blockedIpRanges[0].getStartIp();
+        ipEnd = blockedIpRanges[0].getEndIp();
+    }
+    int initServers = config.getInitServers();
+    int startingQueueSize = initServers * 100;
+    
+    logFile->logHeader(
+        config.getInitServers(), 
+        config.getTotalRunTime(),
+        config.getMinProcessTime(),
+        config.getMaxProcessTime(),
+        startingQueueSize,
+        ipStart, 
+        ipEnd
+    );
     logFile->writeSummary(currTime, servers.size(), requestQueue.size());
 }
 
