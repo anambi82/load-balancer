@@ -31,4 +31,4 @@ LoadBalancer.o: LoadBalancer.cpp
 	$(CXX) $(CXXFLAGS) -c LoadBalancer.cpp
 
 clean:
-	rm -f loadbalancer *.o log.txt
+	rm -f loadbalancer *.o 
